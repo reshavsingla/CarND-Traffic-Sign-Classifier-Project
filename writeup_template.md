@@ -19,14 +19,17 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image1]: ./images/data_visualization_initial.png "Visualization"
+[image2]: ./images/orignal%20vs%20grayscale.png "Grayscaling"
+[image9]: ./images/grayscale%20vs%20normalized.png "Normalization"
+[image10]: ./images/data_visualization_more_data.png "Visualization After Adding More Data"
+[image3]: ./images/extra%20data.png "Extra Data"
+[image4]: ./sample-traffic-signals/1x.png "Traffic Sign 1"
+[image5]: ./sample-traffic-signals/2x.png "Traffic Sign 2"
+[image6]: ./sample-traffic-signals/3x.png "Traffic Sign 3"
+[image7]: ./sample-traffic-signals/4x.png "Traffic Sign 4"
+[image8]: ./sample-traffic-signals/5x.png "Traffic Sign 5"
+[image11]: ./images/new_images_softmax_visualization.png "Softmax"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -69,6 +72,8 @@ Here is an example of a traffic sign image before and after grayscaling.
 
 As a last step, I normalized the image data because ...
 
+![alt text][image9]
+
 I decided to generate additional data because ... 
 
 To add more data to the the data set, I used the following techniques because ... 
@@ -79,6 +84,7 @@ Here is an example of an original image and an augmented image:
 
 The difference between the original data set and the augmented data set is the following ... 
 
+![alt text][image10]
 
 ####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
@@ -87,15 +93,20 @@ My final model consisted of the following layers:
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
+| Convolution 5x5     	| 5x5 stride, same padding, outputs 28x28x6 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
- 
+| Max pooling	      	| 2x2 stride,  outputs 16x16x6 				|
+| Convolution 5x5     	| 5x5 stride, same padding, outputs 10x10x16 	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 5x5x16 				|
+| Flatten	      	| input 5x5x16 , output 400 				|
+| Fully connected		| input 400 , output 120		|
+| RELU					|												|
+| Dropout					|					50%							|
+| Fully connected		| input 120 , output 84		|
+| RELU					|												|
+| Dropout					|					50%							|
+| Fully connected		| input 84 , output 43		| 
 
 
 ####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
@@ -105,9 +116,9 @@ To train the model, I used an ....
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 99.7%
+* validation set accuracy of 96.2% 
+* test set accuracy of 94.4%
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
@@ -151,6 +162,8 @@ The model was able to correctly guess 4 of the 5 traffic signs, which gives an a
 ####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+
+![alt text][image11]
 
 For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
 
