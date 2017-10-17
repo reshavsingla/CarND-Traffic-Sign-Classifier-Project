@@ -138,21 +138,26 @@ My final model results were:
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
+
 I have used the Lenet architecture as it is a good starting point for image recognition.
 
 * What were some problems with the initial architecture?
+
 The low accuracy 89-90% for validation data caused by over fitting (high accuracy on training data) of the initial archtecture had to be improved.
 
 * How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-The architecture as adjusted by adding 2 dropout layers to improve accuracy. I tried improving it by adding another convolution layer but that didnt result in improving the accuracy.
+
+The architecture as adjusted by adding 2 dropout layers to improve accuracy and decrease over fitting. I tried improving it by adding another convolution layer but that didnt result in improving the accuracy.
 
 * Which parameters were tuned? How were they adjusted and why?
+
 I tested by tuning Epochs, learning rate and batch size.
 - On increasing the batch size the accuracy became worse so I abandoned changing it.
 - I increased the Epochs to better train the model but not to increase to level where the model over fits the training data
 - I decreased the learning rate to better optimize the model
 
 * What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+
 The dropout layer helps in reducing the overfitting of data specially for classes having more data.
 
 If a well known architecture was chosen:
